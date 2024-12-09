@@ -1,5 +1,6 @@
 from itertools import cycle
 from mip import solve
+from our_mip import our_solve
 import random
 import sys
 
@@ -239,7 +240,9 @@ def mainGame(movementInfo):
                     SOUNDS['wing'].play()
             
 
-        flap, traj = solve(playery, playerVelY, lowerPipes)
+        # flap_unused, traj1 = solve(playery, playerVelY, lowerPipes)
+
+        flap, traj2 = our_solve(playery, playerVelY, lowerPipes)
 
 
         if flap:
@@ -333,7 +336,8 @@ def mainGame(movementInfo):
         playerOffsetX = IMAGES['player'][0].get_width() / 2
         playerOffsetY = IMAGES['player'][0].get_height() / 2
 
-        pygame.draw.lines(SCREEN, (255,0,0), False, [(x+playerOffsetX,y+playerOffsetY) for (x,y) in traj], 3)
+        # pygame.draw.lines(SCREEN, (0,0,255), False, [(x+playerOffsetX,y+playerOffsetY) for (x,y) in traj1], 3)
+        pygame.draw.lines(SCREEN, (255,0,0), False, [(x+playerOffsetX,y+playerOffsetY) for (x,y) in traj2], 3)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
 
